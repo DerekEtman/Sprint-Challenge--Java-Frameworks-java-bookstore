@@ -13,7 +13,7 @@ import java.util.List;
 @ApiModel(value = "book", description = "Book Entity")
 @Entity
 @Table(name = "book")
-public class Book
+public class Book extends Auditable
 {
 
     @ApiModelProperty(name = "bookid", value = "Book Id", required = true, example = "1")
@@ -33,8 +33,8 @@ public class Book
     @ApiModelProperty(name = "copy", value = "Year book was published", example = "1970")
     private int copy;
 
-    @ManyToMany(mappedBy = "book")
-    @JsonIgnoreProperties("book")
+    @ManyToMany(mappedBy = "books")
+    @JsonIgnoreProperties("books")
     private List<Author> authors = new ArrayList<>();
 
     @ManyToOne

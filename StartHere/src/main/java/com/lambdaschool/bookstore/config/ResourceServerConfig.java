@@ -1,6 +1,7 @@
 package com.lambdaschool.bookstore.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -46,10 +47,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
             // .antMatchers("/data/**").hasAnyRole("ADMIN", "DATA")
             //
             // restrict based on HttpMethod and endpoint
-            // .antMatchers(HttpMethod.GET, "/users/user/**").hasAnyRole("USER")
+            .antMatchers(HttpMethod.GET, "/users/user/**").hasAnyRole("USER")
             .antMatchers("/roles/**",
                          "/actuator/**")
-            .hasAnyRole("ADMIN")
+            .hasAnyRole("ADMIN","DATA")
             .and()
             .exceptionHandling()
             .accessDeniedHandler(new OAuth2AccessDeniedHandler());

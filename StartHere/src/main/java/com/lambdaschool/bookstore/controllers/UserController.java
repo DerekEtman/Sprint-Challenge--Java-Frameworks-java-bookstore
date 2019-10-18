@@ -239,6 +239,7 @@ public class UserController
 //        ]
 //        }
     @PutMapping(value = "/user/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> updateUser(HttpServletRequest request,
                                         @RequestBody
                                                 User updateUser,
